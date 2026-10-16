@@ -1,6 +1,6 @@
 services:
   duck-panel:
-    image: ${DUCKFLOW_IMAGE:-duck-panel:latest}
+    image: ${DUCKFLOW_IMAGE:-stars7/duck-panel:latest}
     container_name: duck-panel
     restart: unless-stopped
     ports:
