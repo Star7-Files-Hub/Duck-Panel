@@ -1,0 +1,3 @@
+'use strict';
+class DriveSelector{constructor(db){this.db=db}select(sizeBytes=0){const rows=this.db.prepare('SELECT id,name,quota_bytes,egress_bytes,used_bytes,health,enabled FROM storage_accounts WHERE enabled=1').all().filter(x=>Number(x.quota_bytes)-Number(x.egress_bytes)>=Number(sizeBytes||0));rows.sort((a,b)=>(a.egress_bytes/a.quota_bytes)-(b.egress_bytes/b.quota_bytes));return rows[0]||null}}
+module.exports={DriveSelector};
