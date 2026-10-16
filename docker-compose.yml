@@ -1,0 +1,21 @@
+services:
+  duck-panel:
+    image: ${DUCKFLOW_IMAGE:-duck-panel:latest}
+    container_name: duck-panel
+    restart: unless-stopped
+    ports:
+      - "${DUCKFLOW_PORT:-17890}:17890"
+    environment:
+      NODE_ENV: production
+      PORT: 17890
+      DUCK_ADMIN_USER: ${DUCK_ADMIN_USER:-admin}
+      DUCK_ADMIN_PASSWORD: ${DUCK_ADMIN_PASSWORD:?set DUCK_ADMIN_PASSWORD}
+    volumes:
+      - ./data:/app/data
+      - ./config.json:/app/config.json:ro
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch(\"http://127.0.0.1:17890/\").then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
