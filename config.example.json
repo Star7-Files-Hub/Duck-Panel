@@ -1,0 +1,62 @@
+{
+  "port": 17890,
+  "timezone": "Asia/Shanghai",
+  "strmDir": "./data/strm",
+  "emby": {
+    "baseUrl": "http://127.0.0.1:8096",
+    "apiKey": "CHANGE_ME",
+    "libraryId": "",
+    "webhookSecret": "",
+    "notifyTemplate": "🎬 {{ event.type }}\\n{{ item.Name }}\\n{{ item.SeriesName|default(\"独立影片\") }} S{{ item.ParentIndexNumber|default(0) }}E{{ item.IndexNumber|default(0) }}"
+  },
+  "officialApi": {
+    "baseUrl": "https://api.example.com",
+    "accounts": []
+  },
+  "providers": {
+    "cloud123": {
+      "baseUrl": "",
+      "endpoints": {}
+    },
+    "official": {
+      "baseUrl": "",
+      "endpoints": {}
+    }
+  },
+  "auth": {
+    "cloud123": {
+      "baseUrl": "",
+      "endpoints": {
+        "sendCode": "",
+        "verifyCode": ""
+      }
+    },
+    "official": {
+      "baseUrl": "",
+      "endpoints": {
+        "sendCode": "",
+        "verifyCode": ""
+      }
+    }
+  },
+  "telegram": {
+    "apiId": "",
+    "apiHash": "",
+    "sessionDir": "./data/telegram",
+    "channels": [],
+    "alertPeer": "",
+    "scanIntervalMinutes": 30,
+    "autoScan": false
+  },
+  "metadata": {
+    "provider": "tvmaze",
+    "tvdbApiKey": "",
+    "tvmazeBaseUrl": "https://api.tvmaze.com"
+  },
+  "features": {
+    "resourceNotify": true
+  },
+  "templates": {
+    "resource": "✅ {{ title|default(name) }} 已转存\\n{{ strmPath }}"
+  }
+}
