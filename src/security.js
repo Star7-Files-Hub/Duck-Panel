@@ -1,0 +1,2 @@
+const crypto=require('crypto');
+function hash(v){return crypto.scryptSync(v,'duck-panel-salt',32).toString('hex')} function sign(payload,secret){return crypto.createHmac('sha256',secret).update(payload).digest('hex')} function token(user){return Buffer.from(JSON.stringify({id:user.id,username:user.username,role:user.role,exp:Date.now()+86400000})).toString('base64url')} function parse(t){try{const v=JSON.parse(Buffer.from(t,'base64url').toString());return v.exp>Date.now()?v:null}catch{return null}} module.exports={hash,sign,token,parse};
